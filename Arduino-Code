@@ -1,0 +1,52 @@
+/* The following code serves to have an Arduino microcontroller
+ * deliver input from several sensors, buttons and potentiometers
+ * to a synthesizer patch in Max.
+ */
+
+int poValue1 = 0;// big potentiometer 1
+int poValue2 = 0; // big potentiometer 2
+int poValue3 = 0; // small potentiometer
+int fsrValue = 0;// small FSR
+int lightSensor = 0; // light sensor
+int redButton = 0; // red Button
+int buttonKey1 = 0; // keyboard key 1
+int buttonKey2 = 0; // keyboard key 2
+int buttonKey3 = 0; // keyboard key 3
+
+void setup() {
+  Serial.begin(9600); 
+}
+
+void loop() {
+  poValue1 = analogRead(0); // variables assigned to analog ports
+  poValue2 = analogRead(1);
+  poValue3 = analogRead(2);
+  fsrValue = analogRead(3);
+  lightSensor = analogRead(4);
+  
+  redButton = digitalRead(2); // variables assigned to digital ports
+  buttonKey1 = digitalRead(4);
+  buttonKey2 = digitalRead(7);
+  buttonKey3 = digitalRead(8);
+
+  // Information from the sensors, potentiometers and buttons in ASCII
+  Serial.print(poValue1);
+  Serial.write(32);
+  Serial.print(poValue2);
+  Serial.write(32);
+  Serial.print(poValue3);
+  Serial.write(32);
+  Serial.print(fsrValue);
+  Serial.write(32);
+  Serial.print(lightSensor);
+  Serial.write(32);
+  Serial.print(redButton);
+  Serial.write(32);
+  Serial.print(buttonKey1);
+  Serial.write(32);
+  Serial.print(buttonKey2);
+  Serial.write(32);
+  Serial.println(buttonKey3);
+  
+  delay(100);
+}
